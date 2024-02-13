@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #added apps
-    'capstone_app'
+    'capstone_app',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +136,20 @@ STATICFILES_DIRS = ['static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#User Authentication
+REST_FRAMEWORK = {
+    # 'DEFAULT_RENDERER_CLASSES' : [
+    #     # 'rest_framework.renderers.JSONRenderer',  # default renderer
+    #     'rest_framework.renderers.BrowsableAPIRenderer',
+    #     # 'rest_framework.renderers.XMLRenderer',
+    # ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES' : (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
+#User registration
+DJOSER={"USER_ID_FIELD":"username"}
