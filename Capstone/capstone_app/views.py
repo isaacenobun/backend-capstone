@@ -20,6 +20,7 @@ def home(request):
 
 
 # Api Views
+
 # Viewsets
 # ------------------------------------
 class UserViewSet(viewsets.ModelViewSet):
@@ -30,7 +31,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = booking.objects.all()
     serializer_class = BookingSerializer
-    permission_classes = [IsAuthenticated] 
+    # permission_classes = [IsAuthenticated] 
+
 
 # Generics
 # ------------------------------------
@@ -45,16 +47,10 @@ class booking(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookingSerializer
 
 class menuitems(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = menu.objects.all()
     serializer_class = MenuSerializer
 
 class menuitem(generics.RetrieveUpdateDestroyAPIView):
     queryset = menu.objects.all()
     serializer_class = MenuSerializer
-
-@api_view()
-@permission_classes([IsAuthenticated])
-def private(request):
-    # Only authenticated users can see this view
-    return Response({'msg':'Only Authenticated users can see this message'})
